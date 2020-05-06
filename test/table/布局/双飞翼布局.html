@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            /* 最后计算最小页面宽度：由于双飞翼布局没有用到position:relative进行定位，
+            所以最小页面宽度应该为200+150=350px。但是当页面宽度缩小到350px附近时，会挤占中间栏的宽度，
+            使得其内容被右侧栏覆盖，因此在设置最小页面宽度时，应该适当增加一些宽度以供中间栏使用（假设为150px）
+ */
+            min-width: 500px;
+        }
+        #container{
+            width: 100%;
+            background: #000;
+        }
+        .box{
+            float: left;
+            height: 300px;
+           
+        }
+        #center{
+            margin-left: 200px;
+            margin-right: 150px;
+           
+        }
+        #left{
+            width: 200px;
+            margin-left: -100%;
+            background: pink;
+        }
+        #right{
+            width: 150px;
+            margin-left: -150px;
+            background: blue;
+
+        }
+
+        #footer{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div id="header" class=""></div>
+
+    <div id="container" class="box">
+        <div id="center"></div>
+    </div>
+    <div id="left" class="box"></div>
+    <div id="right" class="box"></div>
+    <div id="footer" class=""></div>
+</body>
+</html>

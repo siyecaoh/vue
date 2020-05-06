@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>背景定位剪切</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<style>
+		*{
+			margin:0px;
+			padding:0px;			
+		}
+		#wrap{
+			width:1130px;
+			height:400px;
+			margin:100px auto;
+		}
+		#wrap h2{
+			text-align:center;
+			margin-bottom:60px;
+		}
+		.content{
+			width:100%;
+			height:300px;
+		}
+		.content ul li{
+			list-style:none;
+			width:210px;
+			height:300px;
+			/*background:blue;*/
+			float:left;
+			margin:0px 8px;
+		}
+		.icon{
+			position:relative;
+			width:100%;
+			height:20px;
+			padding-top:180px;
+		}
+		.icon div.circle{
+			position:absolute;
+			left:50%;
+			top:0px;
+			transition:1s;
+			margin-left:-78px;
+			width:156px;
+			height:156px;
+			background:url("images/words.png") no-repeat;
+			background-position:0px -363px;
+		}
+		.icon div.left{
+			clip:rect(0px,78px,156px,0px);/*定位剪切：上 右 下 左*/
+		}
+		.icon div.right{
+			clip:rect(0px,156px,156px,78px);/*定位剪切：上 右 下 左*/
+		}
+		.content ul li:hover div.left{
+			clip:rect(156px,78px,156px,0px);
+		}
+		.content ul li:hover div.right{
+			clip:rect(0px,156px,0px,78px);
+		}
+		.icon div.iconItem{
+			position:absolute;
+			left:50%;
+			top:46px;
+			width:64px;
+			height:64px;
+			background:url("images/words.png") no-repeat;
+		}
+		.icon div.first{
+			width:69px;
+			margin-left:-35px;
+			background-position:-245px -357px;
+		}
+		.icon div.second{
+			margin-left:-32px;
+			background-position:-416px -291px;
+		}
+		.icon div.third{
+			width:80px;
+			margin-left:-40px;
+			background-position:-416px -362px;
+		}
+		.icon div.four{
+			width:69px;
+			margin-left:-35px;
+			background-position:-245px -445px;
+		}
+		.icon div.five{
+			width:78px;
+			margin-left:-39px;
+			background-position:-422px -445px;
+		}
+		.icon div.txt{
+			text-align:center;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<h2>我们能做什么</h2>
+			<div class="content">
+				<ul>
+					<li>
+						<div class="icon">
+							<div class="circle left"></div>
+							<div class="circle right"></div>
+							<div class="iconItem first"></div>
+							<div class="txt">高端定制网站</div>
+						</div>
+					</li>
+					<li>
+						<div class="icon"><!--图标盒子-->
+							<div class="circle left"></div>
+							<div class="circle right"></div>
+							<div class="iconItem second"></div>
+							<div class="txt">高端定制网站</div>
+						</div>
+					</li>
+					<li>
+						<div class="icon"><!--图标盒子-->
+							<div class="circle left"></div>
+							<div class="circle right"></div>
+							<div class="iconItem third"></div>
+							<div class="txt">高端定制网站</div>
+						</div>
+					</li>
+					<li>
+						<div class="icon"><!--图标盒子-->
+							<div class="circle left"></div>
+							<div class="circle right"></div>
+							<div class="iconItem four"></div>
+							<div class="txt">高端定制网站</div>
+						</div>
+					</li>
+					<li>
+						<div class="icon"><!--图标盒子-->
+							<div class="circle left"></div>
+							<div class="circle right"></div>
+							<div class="iconItem five"></div>
+							<div class="txt">高端定制网站</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

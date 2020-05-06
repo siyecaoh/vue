@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 标签属性和样式属性同时存在，样式属性会覆盖标签属性 */
+        table{
+            border: 1px solid red;
+            width: 50%;
+
+            /* 设置单元格之间的距离 */
+            border-spacing: 0;
+
+            /* 设置表格的边框是否会合并为一个单一的边框 */
+            border-collapse: collapse;
+            margin: 0 auto;
+
+        }
+        tr{
+            height: 30px;
+            /* 表格每行的对齐方式 */
+            text-align: center;
+            /* 设置搞丢后，设置文本的位置 */
+            vertical-align: middle;
+        }
+        td{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <!-- 合并列单元格colspan -->
+            <td colspan="4">1</td>
+            
+        </tr>
+        <tr>
+            <!-- 合并行单元格rowspan -->
+            <td rowspan="2">2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+        </tr>
+    </table>
+</body>
+</html>

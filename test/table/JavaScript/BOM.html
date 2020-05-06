@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var leftPos=(typeof window.screenLeft=="number")?window.screenLeft:window.screenX;
+        var topPos=(typeof window.screenTop=="number")?window.screenTop:window.screenY;
+
+
+        var leftPos=(typeof window.screenLeft=="number")?window.screenLeft:window.screenX;
+        var topPos=(typeof window.screenTop=="number")?window.screenTop:window.screenY;
+
+
+        var pageWidth=window.innerWidth;
+        var pageHeight=window.innerHeight;
+        if (typeof pageWidth !="number") {
+            if (document.compatMode=="CSS1Compat") {
+                pageWidth=document.documentElement.clientWidth;
+                pageHeight=document.documentElement.clientHeight;
+            }else{
+                pageWidth=document.body.clientWidth;
+                pageHeight=document.body.clientHeight;
+            }
+        }
+
+
+        var num=0;
+        var max=10;
+        var intervalId=null;
+        function increatementNumber(){
+            num++;
+            if (num==max) {
+                clearInterval(intervalId);
+            }
+        }
+        intervalId=setInterval(increatementNumber,500);
+
+
+        function inc(){
+            num++;
+
+            // 如果执行次数未达到max设定的值，则设置另一次超时调用
+            if (num<max) {
+                setTimeout(inc,500);
+            }else{
+
+            }
+        }
+        setTimeout(inc,500);
+
+        function getQueryStringArgs(){
+            //location="http://假设查询的字符串是?q=javascript&num=10";
+            var qs=(location.search.length>0?location.search.substring(1):"");
+            var args={};
+            var items=qs.length?qs.split("&"):[];
+            var item=null;
+            var name=null;
+            var value=null;
+            var len=items.length;
+            for (let i = 0; i < len.length; i++) {
+                item=items[i].split("=");
+                name=decodeURIComponent(item[0]);
+                value=decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name]=value;
+                }
+                
+            }
+            return args;
+        }
+
+        var url="假设查询的字符串是?q=javascript&num=10";
+        var args=getQueryStringArgs(url);
+        alert(args["q"]);
+        alert(args["num"]);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+      // // 主线程
+      //   console.log(1);
+       
+      //   // 宏队列
+      //   setTimeout(()=>{
+      //       console.log(2);
+
+      //       // 主线程任务
+      //       new Promise(()=>{
+      //           console.log(11);
+      //       })
+      //   })
+
+      //   requestIdleCallback(()=>{
+      //       console.log(7);
+      //   })
+
+      //   //new Promise()属于主线程任务
+      //   let promise=new Promise((resolve,reject)=>{
+
+      //     // 宏队列
+      //       setTimeout(() => {
+      //        console.log(10);   
+      //       });
+
+      //       // 主线程任务
+      //       resolve();
+      //       console.log(4);
+      //   })
+
+      //   fn();
+      //   console.log(3);
+
+      //   // 微队列
+      //   promise.then(()=>{
+      //       console.log(12);
+      //   })
+
+      //   function fn(){
+      //       console.log(6);
+      //       console.log("=====================");
+      //   }
+        // 最后结果 1-4-6-3-12-2-11-10-7
+
+
+    //     console.log('1');
+ 
+    // setTimeout(function() {
+    //     console.log('2');
+    //     new Promise(function(resolve) {
+    //         console.log('4');
+    //         resolve();
+    //     }).then(function() {
+    //         console.log('5')
+    //     })
+    // })
+    // new Promise(function(resolve) {
+    //     console.log('7');
+    //     resolve();
+    // }).then(function() {
+    //     console.log('8')
+    // })
+ 
+    // setTimeout(function() {
+    //     console.log('9');
+    //     new Promise(function(resolve) {
+    //         console.log('11');
+    //         resolve();
+    //     }).then(function() {
+    //         console.log('12')
+    //     })
+    // })
+
+
+//     function fn (a) {
+//   var a = 11
+//   console.log(a)
+// }
+ 
+// fn(10)
+
+
+// function fn (a) {
+//   console.log(a)
+//   var a = 11
+//   function a () {
+//     console.log('我优先级最高')
+//   }
+// }
+ 
+// fn(10)   // [Function: a]
+
+
+// function 函数名([虚参列表]){
+//   函数体;
+//   return[函数返回值];
+// }
+// var 函数名=new Function(["虚参列表"],"函数体")；
+
+// 函数名=function([虚参列表]){
+//   函数体；
+// }
+
+// function 函数名(){
+//   代码;
+//   函数名();
+// }
+
+
+// node类型
+
+  //     if (someNode.nodeType==Node.ELEMENT_NODE) {
+  //       console.log("node is an element!");
+  //     }
+
+  //     if (someNode.nodeType==1) {
+        
+  //     }
+
+  //     if (someNode.nodeType==1) {
+  //       value=someNode.nodeName;
+  //     }
+
+  //     var firstChild=someNode.childNodes[0];
+
+  //     var secondChild=someNode.childNodes.item[1];
+  //     var count=someNode.childNodes.length;
+
+  //     var arrayOfNodes=Array.prototype.slice.call(someNode.childNodes,0);
+
+
+
+
+  //     function convertToArray(nodes){
+  //       var array=null;
+  //       try{
+  //         array=Array.prototype.slice.call(nodes,0);
+  //       }catch(ex){
+  //         array=new Array();
+  //         for (let i = 0; i < nodes.length; i++) {
+  //           array.push(nodes[i]);
+            
+  //         }
+  //       }
+  //       return array;
+  //     }
+      
+  //     function convertToArray(nodes){
+  //       var array=null;
+  //       try{
+  //         array=Array.prototype.slice.call(nodes,0);
+  //       }catch(ex){
+  //         array=new Array();
+  //         for(var i=0;i<nodes.length;i++){
+  //           array.push(nodes[i]);
+  //         }
+  //       }
+  //       return array;
+  //     }
+
+
+  //     if (someNode.nextSibling===null) {
+        
+  //     }else if (someNode.previousSibling===null) {
+        
+  //     }
+
+  //     var returnedNode=someNode.appendChild(newNode);
+  //     var returnedNode=someNode.appendChild(someNode.firstChild);
+  //     console.log(returnedNode==someNode.firstChild);
+  //     console.log(returnedNode==someNode.lastChild);
+
+  //     returnedNode=someNode.insertBefore(newNode,null);
+
+  //     var returnedNode=someNode.insertBefore(newNode,someNode.firstChild);
+
+  //     returnedNode=someNode.insertBefore(newNode,someNode.lastChild);
+
+
+  //     var returnedNode=someNode.replaceChild(newNode,someNode.firstChild);
+  //     var returnedChild=someNode.replaceChild(newNode,someNode.lastChild);
+
+  //     var fromFirstChild=someNode.removeChild(someNode.firstChild);
+  //     var fromLastChild=someNode.removeChild(someNode.lastChild);
+
+  //     var deepList=mylist.cloneNode(true);
+  //     console.log(deepList.childNodes.length);
+  //     var shallowList=mylist.cloneNode(false);
+  //     console.log(shallowList.childNodes.length);
+
+  //     var html=document.documentElement;
+
+  //     var originalTitle=document.title;
+  //     document.title="new page title";
+
+  //     var url=document.URL;
+  //     var domain=document.domain;
+  //     var referrer=document.referrer;
+
+  //     var hasXmlDom=document.implementation.hasFeature("XML","1.0");
+
+  //     // document.write(new Date().toString());
+
+
+  //     // element--1
+  //     if (element.tagName.toLowerCase()=="div") {
+        
+  //     }
+
+  //     // var value=div.getAttribute("my_special_attribute");
+
+  //     // div.setAttribute("id","someID");
+  //     // div.removeAttribute("class");
+
+  //     // var id=element.attributes.getNamedItem("id").nodeValue;
+  //     // var id=element.attributes['id'].nodeValue;
+
+  //     function outputAttributes(element){
+  //       var pairs=new Array();
+  //       var attrName,attrValue;
+  //       for (let i = 0; i < element.attributes.length; i++) {
+  //         attrName=element.attributes[i].nodeName;
+  //         attrValue=element.attributes[i].nodeValue;
+  //         pairs.push(attrName+attrValue);
+          
+  //       }
+  //     }
+
+
+  //     function outputAttributes(element){
+  //       var pairs=new Array();
+  //       for (let i = 0; i < element.attributes.length; i++) {
+  //         const attrName=element.attributes[i].nodeName;
+  //         var attrValue=element.attributes[i].nodeValue;
+  //         pairs.push(nodeName+nodeValue);
+          
+  //       }
+  //       return pairs.join("");
+  //     }
+
+  //     function outputAttributes(element){
+  //       var pairs=new Array();
+  //       for (let i = 0; i < element.attributes.length; i++) {
+  //        var attrName=element.attributes[i].nodeName;
+  //        var attrValue=element.attributes[i].nodeValue;
+  //        if (element.attributes[i].specified) {
+  //          pairs.push(attrName+attrValue);
+  //        }
+          
+  //       }
+  //       return pairs.join(" ");
+  //     }
+
+  //     var div=document.createElement("div");
+  //     div.id="box";
+  //     document.body.appendChild(div);
+
+  //     for(var i=0;i<element.childNodes.length;i++){
+  //       if (element.childNodes[i].nodeType==1) {
+          
+  //       }
+  //     }
+
+  //     // text类型
+  //   var textNode=document.createTextNode();
+  //   var element=document.createElement("div");
+  //   element.className="message";
+  //   var textNode=document.createTextNode("heee");
+  //   element.appendChild(textNode);
+  //   document.body.appendChild(element);
+
+
+  //   var textNode=document.createTextNode("hh");
+  //   var element=document.createElement("div");
+  //   element.appendChild(textNode);
+
+  //   var anotherTextNode=document.createTextNode("hehe");
+  //   element.appendChild(anotherTextNode);
+  //   document.body.appendChild(element);
+
+  //   element.normalize();
+
+  //   var element=document.createElement("div");
+  //   element.className="message";
+  //   var textNode=document.createTextNode("hello");
+  //   element.appendChild(textNode);
+  //   document.body.appendChild(element);
+
+  //   var newNode=element.firstChild.splitText(5);
+
+  //   var fragment=document.createDocumentFragment();
+  //   var ul=document.getElementById("myLst");
+  //   var li=null;
+  //   for(var i=0;i<3;i++){
+  //     li=document.createElement("li");
+  //     li.appendChild(document.createTextNode(i+1));
+  //     fragment.appendChild(li);
+  //   }
+  //   ul.appendChild(fragment);
+
+  //   var fragment=document.createDocumentFragment();
+  //   var ul=document.getElementById("mylist");
+  //   var li=null;
+  //   for(var i=0;i<3;i++){
+  //     li=document.createElement("li");
+  //     li.appendChild(document.createTextNode(i+1));
+  //     fragment.appendChild(li);
+  //   }
+  //   ul.appendChild(fragment);
+
+
+
+  //   var table=document.createElement("table");
+  //   table.border=1;
+  //   table.width="100%";
+  //   var tbody=document.createElement("tbody");
+  //   table.appendChild(tbody);
+
+  //   tbody.insertRow(0);
+  //   tbody.rows[0].insertCell(0);
+  //   tbody.rows[0].cells[0].appendChild(document.createTextNode("cell 1,1"));
+  //   tbody.rows[0].insertCell[1];
+  //   tbody.rows[0].cells[1].appendChild(document.createTextNode("cell 2,1"));
+    
+  //   tbody.insertRow(1);
+  //   tbody.rows[1].insertCell(0);
+  //   tbody.rows[1].cells[0].appendChild(document.createTextNode("cell 1,2"));
+  //   tbody.rows[1].insertCell(1);
+  //   tbody.rows[1].cells[1].appendChild(document.createTextNode("cell 2,2"));
+  //   document.body.appendChild(table);
+
+
+
+  //   var divs=document.getElementsByTagName("div"),div,len,i;
+  //   for(var i=0,len=divs.length;i<len;i++){
+  //     div=document.createElement("div");
+  //     document.body.appendChild(div);
+  //   }
+
+
+  //   var body=document.querySelector("body");
+  //   var mydiv=document.querySelector("#div");
+  //   var box=document.querySelector(".box");
+  //   var img=document.querySelector("img.button");
+
+
+  //   var ems=document.getElementById(mydiv).querySelectorAll("em");
+  //   var selected=document.querySelectorAll(".selected");
+  //   var strongs=document.querySelectorAll("p strong");
+
+  //   var i,len,strong;
+  //   for(var i=0;i<strongs.length;i++){
+  //     strong=strong[i];
+  //     strong.className="important";
+  //   }
+
+
+
+  //   if (document.body.matchesSelector("body.page1")) {
+      
+  //   }
+
+
+
+  //   function matchesSelector(element,selector){
+  //     if (element.matchesSelector) {
+  //       return element.matchesSelector(selector);
+  //     }else if (element.msMatchesSelector) {
+  //       return element.msMatchesSelector(selector);
+  //     }else if (element.mozMatchesSelector) {
+  //       return element.mozMatchesSelector(selector);
+  //     }else if (element.webkitMatchesSelector) {
+  //       return element.webkitMatchesSelector(selector);
+  //     }else{
+  //       throw  new Error("Not supported");
+  //     }
+  //   }
+
+
+  //   var i,len,child=element.firstElementChild;
+  //   while(child!=element.lastElementChild){
+  //     processChild(child);
+  //     child=child.nextElementSibling;
+  //   }
+
+
+
+  //   div.classList.remove("disabled");
+  //   div.classList.add("current");
+  //   div.classList.toggle("user");
+  //   if (div.classList.contains("bd")&&!div.classList.contains("disabled")) {
+  //     dosomething(div.classList[i]);
+  //   }
+
+  //   var button=document.getElementById("myButton");
+  //   button.focus();
+
+  //   if (document.readyState=="complete") {
+      
+  //   }
+
+
+  //   if (document.compatMode=="CSS1Compat") {
+      
+  //   }
+
+  //   var div=document.getElementById("box");
+  //   var appId=div.dataset.appId;
+  //   var myName=div.dataset.myName;
+  //   div.dataset.appId="111";
+  //   div.dataset.myName="hh";
+  //   if (div.dataset.myname) {
+      
+
+  //   }
+
+  //   div.innerHTML="hhhhh";
+  //   div.innerHTML="<input type=\"hidden\"><script defer><\/script>";
+
+  //   document.documentElement.contains(document.body);
+
+  //   function contains(refNode,otherNode){
+  //     if (typeof refNode.contains=="function"&&(!client.engine.webkit||client.engine.webkit>=552)) {
+  //       return refNode.contains(otherNode);
+
+  //     }else if (typeof refNode.compareDocumentPosition=="function") {
+  //       return !!(refNode.compareDocumentPosition(otherNode)&16);
+  //     }else{
+  //       var node=otherNode.parentNode;
+  //       do{
+  //         if (node===refNode) {
+  //           return true;
+  //         }else{
+  //           node=node.parentNode;
+  //         }
+  //       }while(node!==null)
+  //       return false;
+  //     }
+  //   }
+
+
+  //   function getInnerText(element){
+  //     return (typeof element.textContent=="string")?element.textContent:element.innerText;
+
+  //   }
+  //   function setInnerText(element,text){
+  //     if (typeof element.textContent=="string") {
+  //       element.textContent=text;
+
+  //     }else{
+  //       element.innerText=text;  
+  //     }
+  //   }
+
+  //   var parentWindow=document.defaultView||document.parentWindow;
+
+
+  //   var doc=document.implementation.createDocument("","root",null){
+
+  //   }
+
+  //   var div=document.createElement("div");
+  //   div.setUserData("name","hhc",function(operation,key,value,src,dest)){
+  //     if (operation==1) {
+  //       dest.setUserData(key,value,function(){});
+  //     }
+
+  //   }
+
+  //   function getStyleSheet(){
+  //     return element.sheet||element.styleSheet;
+  //   }
+
+  //   function insertRule(sheet,selectorText,cssText,position){
+  //     if (sheet.insertRule) {
+  //       sheet.insertRule(selectorText+cssText+position);
+  //     }else if (sheet.addRule) {
+  //       sheet.addRule(selectorText,cssText,position);
+  //     }
+  //   }
+
+  //   function deleteRule(sheet,index){
+  //     if (sheet.deleteRule) {
+  //       sheet.deleteRule(index);
+  //     }else if (sheet.removeRule) {
+  //       sheet.removeRule(index);
+  //     }
+  //   }
+
+  //   function getElementLeft(element){
+  //     var actualLeft=element.offsetLeft;
+  //     var current=element.offsetParent;
+  //     while(current!==null){
+  //       actualLeft+=current.offsetLeft;
+  //       current=current.offsetParent;
+  //     }
+  //     return actualLeft;
+  //   }
+
+  //   function getElementTop(element){
+  //     var actualTop=element.offsetTop;
+  //     var current=element.offsetParent;
+  //     while(current!=null){
+  //       actualTop+=current.offsetTop;
+  //       current=current.offsetParent;
+  //     }
+  //     return actualTop;
+  //   }
+
+  //   function getViewport(){
+  //     if (document.compatMode=="BackCompat") {
+  //       return {
+  //         width:document.body.clientWidth,
+  //         height:document.body.clientHeight
+  //       };
+  //     }else{
+  //       return{
+  //         width:document.documentElement.clientWidth,
+  //         height:document.documentElement.clientHeight
+  //       };
+  //     }
+  //   }
+
+
+  //   function getBoundingClientRect(element){
+  //     if (typeof arguments.callee.offset!="number") {
+  //       var scrollTop=document.documentElement.scrollTop;
+  //       var temp=document.createElement("div");
+  //       temp.style.cssText="position:absolute;left:0;top:0";
+  //       document.body.appendChild(temp);
+  //       temp=null;
+  //     }
+  //     var rect=element.getBoundingClientRect();
+  //     var offset=arguments.callee.offset;
+  //     return{
+  //       left:rect.left+offset,
+  //       right:rect.right+offset,
+  //       top:rect.top+offset,
+  //       bottom:rect.bottom+offset
+  //     }
+  //   }
+
+
+  //   function getBoundingClientRect(element){
+  //     var scrollTop=document.documentElement.scrollTop;
+  //     var scrollLeft=document.documentElement.scrollLeft;
+  //     if (element.getBoundingClientRect) {
+  //       if (typeof arguments.callee.offset!='number') {
+  //         var temp=document.createElement("div");
+  //         temp.style.cssText="position:absolute;left:0;top:0;";
+  //         document.body.appendChild(temp);
+  //         arguments.callee.offset=-temp.getBoundingClientRect().top-scrollTop;
+  //         document.body.removeChild(temp);
+  //         temp=null;
+  //       }
+
+  //       var rect=element.getBoundingClientRect();
+  //       var offset=arguments.callee.offset;
+  //       return{
+  //         left:rect.left+offset,
+  //         right:rect.right+offset,
+  //         top:rect.top+offset,
+  //         bottom:rect.bottom+offset
+  //       };
+  //     }else{
+  //       var actualLeft=getElementLeft(element);
+  //       var actualTop=getElementTop(element);
+  //       return{
+  //         left:actualLeft-screenLeft,
+  //         right:actualLeft+element.offsetWidth-scrollLeft,
+  //         top:actualTop-scrollTop,
+  //         bottom:actualTop+element.offsetHeight-scrollTop
+  //       }
+  //     }
+  //   }
+  
+
+  // var div=document.getElementById("div1");
+  // var iterator=document.createNodeIterator(div,NodeFilter.SHOW_ELEMENT,null,false);
+  // var node=iterator.nextNode();
+  // while(node!==null){
+  //   node=iterator.nextNode();
+  // }
+
+
+  // var div=document.getElementById("div1");
+  // var filter=function(node){
+  //   return node.tagName.toLowerCase()=="li"?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+  // };
+  // var iterator=document.createNodeIterator(div,NodeFilter.SHOW_ELEMENT,filter,false);
+  // var node=iterator.nextNode();
+  // while(node!==null){
+  //   node=iterator.nextNode();
+  // }
+
+  // var range1=document.createRange();
+  // var range2=document.createRange();
+  // var p1=document.getElementById("p1");
+  // var p1Index=-1;
+  // var i,len;
+  // for(i=0,len=p1.parentNode.childNodes.length;i<len;i++){
+  //   if (p1.parentNode.childNodes[i]==p1) {
+  //     p1Index=i;
+  //     break;
+  //   }
+  // }
+  // range1.setStart(p1.parentNode,p1Index);
+  // range1.setStart(p1.parentNode,p1Index+1);
+
+  // range2.setStart(p1,0);
+  // range2.setEnd(p1,p1.childNodes.length);
+
+
+  // var p1=document.getElementById("p1");
+  // helloword=p1.firstChild.firstChild;
+  // wordNode=p1.lastChild;
+  // range=document.createRange();
+  // range.setStart(helloword,2);
+  // range.setEnd(wordNode,3);
+
+  // var fragment=range.extractContents();
+  // p1.parentNode.appendChild(fragment);
+
+
+  // var EventUtil={
+  //   addHandler:function(element,type,handler){
+  //     if (element.addEventListener) {
+  //       element.addEventListener(type,handler,false);
+  //     }else if (element.attachEvent) {
+  //       element.attachEvent("on"+type,handler);
+  //     }else{
+  //       element["on"+type]=handler;
+  //     }
+  //   },
+  //   removeHandler:function(element,type,handler){
+  //     if (element.removeEventListener) {
+  //       element.removeEventListener(type,handler,false);
+  //     }else if (element.detachEvent) {
+  //       element.detachEvent("on"+type,handler);
+  //     }else{
+  //       element["on"+type]=null;
+  //     }
+  //   }
+  // }
+
+
+  // var EventUtil={
+  //   addHandler:function(element,type,handler){
+  //     if (element.addEventListener) {
+  //       element.addEventListener(type,handler,false);
+  //     }else if (element.attachEvent) {
+  //       element.attachEvent("on"+type,handler)
+  //     }else{
+  //       element["on"+type]=handler;
+  //     }
+  //   },
+  //   removeHandler:function(element,type,handler){
+  //     if (element.removeEventListener) {
+  //       element.removeEventListener(type,handler,false);
+  //     }else if (element.detachEvent) {
+  //       element.detachEvent("on"+type,handler);
+  //     }else{
+  //       element["on"+type]=null;
+  //     }
+  //   }
+  // }
+
+  // var EventUtil={
+  //   addHandler:function(element,type,handler){
+
+  //   },
+  //   getEvent:function(event){
+  //     return event?event:window.event;
+  //   },
+  //   getTarget:function(event){
+  //     return event.target||event.srcElement;
+  //   },
+  //   preventDefault:function(event){
+  //     if (event.preventDefault) {
+  //       event.preventDefault();
+  //     }else{
+  //       event.returnValue=false;
+  //     }
+  //   },
+  //   removeHandler:function(element,type,handler){
+
+  //   },
+  //   stopPropagation:function(event){
+  //     if (event.stopPropagation) {
+  //       event.stopPropagation();
+  //     }else{
+  //       event.cancelBubble=true;
+  //     }
+  //   }
+  // }
+
+
+  // var EventUtil={
+  //   addHandler:function(element,type,handler){
+
+  //   },
+  //   getEvent:function(event){
+  //     return event?event:window.event;
+  //   },
+  //   getTarget:function(event){
+  //     return event.target||event.srcElement;
+  //   },
+  //   preventDefault:function(event){
+  //     if (event.preventDefault) {
+  //       event.preventDefault();
+  //     }else{
+  //       event.returnValue=false;
+  //     }
+  //   },
+  //   removeHandler:function(element,type,handler){
+
+  //   },
+  //   stopPropagation:function(event){
+  //     if (event.stopPropagation) {
+  //       event.stopPropagation();
+  //     }else{
+  //       event.cancelBubble=true;
+  //     }
+  //   }
+  // }
+
+  var EventUtil={
+    addHandler:function(element,type,handler){},
+    getEvent:function(event){
+      return event?event:window.event;
+    },
+    getTarget:function(event){
+      return event.target||event.srcElement;
+    },
+    preventDefault:function(event){
+      if (event.preventDefault) {
+        event.preventDefault();
+      }else{
+        event.returnValue=false;
+      }
+    },
+    removeHandler:function(element,type,handler){
+
+    },
+    stopPropagation:function(event){
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      }else{
+        event.cancelBubble=true;
+      }
+    }
+  }
+
+
+  // var div=document.getElementById("mydiv");
+  // EventUtil.addHandler(div,"click",function(event){
+  //   event=EventUtil.getEvent(event);
+  //   var pageX=event.pageX,
+  //   var pageY=event.pageY;
+  //   if (pageX==undefined) {
+  //     pageX=event.clientX+(document.body.scrollLeft||document.documentElement.scrollLeft);
+  //   }
+  //   if (pageY===undefined) {
+  //     pageY=event.clientY+(document.body.scrollTop||document.documentElement.scrollTop);
+  //   }
+  // })
+
+
+  // var div=document.getElementById("mydiv");
+  // EventUtil.addHandler(div,"click",function(event){
+  //   event=EventUtil.getEvent(event);
+  //   var pageX=event.pageX,
+  //   var pageY=event.pageY;
+  //   if (pageX==undefined) {
+  //     pageX=event.clientX+(document.body.scrollLeft||document.documentElement.scrollLeft);
+  //   }
+  //   if (pageY===undefined) {
+  //     pageY=event.clientY+(document.body.scrollTop||document.documentElement.scrollTop);
+  //   }
+  // }
+
+
+  var div=document.getElementById("box");
+  EventUtil.addHandler(div,"click",function(event){
+    event=EventUtil.getEvent(event);
+    var pageX=event.pageX,
+    var pageY=event.pageY;
+    if (pageX===undefined) {
+      pageX=event.clientX+(document.body.scrollLeft||document.documentElement.scrollLeft);
+    }
+    if (pageY===undefined) {
+      pageY=event.clientY+(document.body.scrollTop||document.documentElement.scrollTop);
+    }
+  })
+
+
+  
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+      <!-- <a href="javascript:函数名()"></a> -->
+      <!-- <input type="checked"> -->
+      <ul>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+      </ul>
+</body>
+</html>

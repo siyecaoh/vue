@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <script type="text/javascript" src="cookie.js"></script> 
+ 
+</head>
+<body>
+  <h2>欢迎登录</h2>
+  <div class="field">
+    <label for="name">
+      用户名
+    </label>
+    <input type="text" name="" id="login-name">
+    
+  </div>
+  <div class="field">
+    <label for="key">密码</label>
+    <input type="password" name="" id="login-key">
+  </div>
+
+  <div class="field">
+    <input type="button" value="登录" id="login-btn">
+  </div>
+</body>
+<script> 
+  var oLname=document.getElementById("login-name");
+  var oLkey=document.getElementById("login-key");
+  var oLbtn=document.getElementById("login-btn");
+  oLbtn.onclick=function(argument){
+    var val=oLname.value+":"+oLkey.value;
+    if(getCookie("bank")){
+      var arrBank=getCookie("bank").split("_");
+      var boo=false;
+      for (let i = 0; i < arrBank.length; i++) {
+        if(val==arrBank[i]){
+          boo=true;
+        }
+        
+      }
+      if (boo==true) {
+       //  匹配到弹出登录成功，并刷新页面
+        setCookie("user",val);
+        alert("登录成功");
+        window.location.href="index.html";
+      }else{
+        alert("用户名密码错误");
+      }
+    }
+  }
+</script>
+</html>

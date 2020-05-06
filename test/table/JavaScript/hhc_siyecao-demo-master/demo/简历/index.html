@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link href="" type="image/x-icon" rel="shortcut icon" />
+  <title>我的简历</title>
+  <style type="text/css">
+	*{padding:0;margin:0;}
+	html,body{height:100%;font-family:'Microsoft yahei';}
+	body{overflow:hidden;}
+	ul li{list-style:none;}
+	a{text-decoration:none;}
+	.center{text-align:center;}
+	
+
+/* 加载动画 start */
+	#loading{position:relative;height:100%;background:#000;z-index:999;display:none;z-index:999;}
+	#loading p{
+		position:absolute;top:50%;left:50%;
+		width:500px;
+		height:30px;
+		line-height:30px;
+		color:#fff;
+		font-size:14px;
+		font-weight:bold;
+		border:1px solid #fcc;
+		background-color:#fcc;		
+		border-radius:3px;
+		margin-top:-10px;
+		margin-left:-250px;
+	}
+/* 加载动画 end */
+
+	#container{position:relative;top:0;left:0;height:100%;width:100%;}
+/* 侧边栏 */
+	#silder{position:fixed;top:50%;right:50px;width:0px;height:300px;margin-top:-150px;z-index:666;border-left:1px dashed #666;}
+	#silder li{position:relative;width:16px;height:16px;border-radius:50%;background:#fff;margin-bottom:30px;margin-left:-8px;cursor: pointer;}
+	#silder li:before{position:absolute;top:50%;left:50%;content:'';width:6px;height:6px;margin-top:-3px;margin-left:-3px;background:#337ab7;border-radius:50%;}
+	#silder li.on{transform:scale(2);}
+/* 侧边栏 end */
+/* 导航按钮 */
+	.header{position:relative;top:0;left:0;z-index:999;}
+	.header .btn{position:fixed;top:20px;left:100%;width:60px;height:60px;margin-left:-90px;border-radius:50%;background:transparent;box-shadow:0 3px 5px rgba(0,0,0,.2)}
+	.header .btn:hover{background:#337ab7;}
+/* 导航按钮 end */
+/* 内容页 */
+	#content{position:relative;width:100%;height:100%;}	
+	.page{
+		position:relative;
+		top:0;left:0;
+		height:100%;width:100%;
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-attachment:fixed;
+	}
+	.bg{position:absolute;top:0;left:0;height:100%;width:100%;background:rgba(86, 83, 100, .7);z-index:555;}
+	.box{box-sizing:border-box;width:80%;max-width:800px;margin:0 auto;padding-top:100px;color:#fff;}
+	.box h1,.box h2{text-align:center;}
+	.box p{text-align:center;margin:10px auto 0;}
+	.box .title{font-size:18px;text-align:center;}
+	.box .title:after{content:'';display:block;border-top:2px solid #f11;width:128px;margin:5px auto 0;}
+	.box .subTitle{font-size:18px;text-align:center;}
+/* 轮播 */
+	#content .lunbo{perspective:800px;z-index:10;}
+	.lunbo ul{transform-style:preserve-3d;position:absolute;width:100%;height:100%;transform:translateZ(0) rotateY(0deg) rotateX(0deg) ;}
+	.lunbo li{position:absolute;top:0;left:0;height:100%;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;z-index:444;}
+	.lunbo li:nth-child(1){}
+	.lunbo li:nth-child(2){transform-origin:top;transform:rotateX(-90deg) rotateY(-180deg);}
+	.lunbo li:nth-child(3){transform:translateZ(-775px);}
+	.lunbo li:nth-child(4){transform-origin:bottom;transform:rotateX(90deg) rotateY(-180deg);}
+	.lunbo .bg{background:rgba(218, 218, 234, 0.35);}	
+	#content .lunbo .box{width:600px;padding:30px 0;margin:200px auto 0;box-shadow:0 0 10px rgba(0,0,0,.4);text-align:center;}
+	.lunbo .box p{color:#000;}
+	.lunbo .bg img{position:absolute;left:50%;bottom:20px;width:50px;height:50px;margin-left:-25px;
+		    animation: .6s shake linear infinite alternate;
+	}
+	@keyframes shake{
+		0% {
+			bottom: 20px;
+		}
+		100% {
+			bottom: 40px;
+		}
+	}
+/* 轮播 end */
+	.jieshao img{display:block;width:200px;height:200px;border-radius:50%;margin:0 auto;}
+	.jieshao .box p{text-align:left;}
+	.jieshao .box p:nth-child(2){margin-top:60px;}
+
+	.skills .bg{position:relative;perspective:800px;}
+	.skills .box>ul {transform-style:preserve-3d;position:absolute;width:0;height:0;top:50%;left:50%;}
+	.skills .box>ul>li{
+		position:absolute;top:0;left:0;
+		width:140px;height:210px;margin-top:-105px;margin-left:-70px;
+		text-align:center;
+		transform:translate(0px,0px) scale(.5);
+		transition:transform 1s;
+	}
+	.skills .front{position:absolute;top:0;left:0px;height:100%;width:100%;
+		background:rgba(0,0,0,0.5);		
+		border:1px solid #f9f;box-shadow:0 0 8px #f9f;
+		transition:1s ease-in-out;
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;		
+	}
+	.skills .front img{display:block;margin:20px auto;}
+	.skills .front p{display:block;margin:30px auto 25px;}
+	.skills .front i{display:block;width:24px;height:24px;margin:20px auto;background:url(img/ro.png) center/cover no-repeat;animation:xuanzhuan 1s linear infinite;}
+	@keyframes xuanzhuan{
+		0% {
+			transform:rotateZ(0deg);
+		}
+		100% {
+			transform:rotateZ(360deg);
+		}
+	}
+	.skills .back{position:absolute;top:0;left:0px;height:100%;width:100%;
+		background:rgba(0,0,0,0.5);	
+		border:1px solid #f9f;box-shadow:0 0 8px #f9f;
+		transform:rotateY(180deg);
+		transition:1s ease-in-out;
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;				
+	}
+	.skills .back ul{padding:8px 5px 8px 20px;}
+	.skills .back ul li{
+		list-style:circle;
+		margin:8px auto;
+		text-align:left;
+		font-size:14px;
+		word-wrap:break-word;
+		word-break:break-all;
+	}
+	.skills .box>ul>li:hover .front{transform:rotateY(-180deg);}
+	.skills .box>ul>li:hover .back{transform:rotateY(0deg);}
+
+	
+	.jingli .left{float:left;position:relative;}
+	.jingli .left .top{width:92px;height:92px;border:5px solid #d7d8d8;border-radius:50%;}
+	.jingli .left .top span{display:block;text-align:center;cursor: pointer;font-weight: bold;}
+	.jingli .top .num{margin-top:20px;margin-bottom:3px;color: #6bc30d;font-size:30px;s}
+	.jingli .top .year{font-size: 15px;color: #90af70;}
+	.jingli .left ul{
+		position: relative;
+		width: 110px;
+		height: 360px;
+		border-right: 8px solid #d7d8d8;
+		padding-top: 20px;
+		margin-left:-62px;
+		cursor: pointer;
+	}
+	.jingli .left li{margin-bottom:100px;}
+	.jingli .left dl{margin-top:20px;margin-right:20px;}
+	.jingli .left dt{float:left;font-size: 12px;color:#e6de8d;margin-top:6px;}
+	.jingli .left dd{float:left;font-size: 18px;color:#e6de8d;margin-left: 8px;}
+	.jingli .left .node{width:16px;height:16px;border-radius:50%;border:2px solid #a6db6d;background:#fff;margin-left:104px;}
+	.jingli .left i{display:block;width:20px;border-bottom:2px solid #a6db6d;margin-left:84px;margin-top:-10px;}
+	.jingli .right{margin-top:140px;}
+	.jingli .right li{margin-bottom:40px;}
+
+	.zuoping .demo_list{max-width:800px;margin:80px auto;}
+	.zuoping .demo_list:after{content:'';clear:both;display:block;}
+	.zuoping .demo_list .select_list{margin: 10px 0;}
+	.zuoping .demo_list .select_list .left{float:left;}
+	.zuoping .demo_list .select_list .right{float:right;}
+	.zuoping .demo_list .select_list .right ul li{float:left;}
+	.zuoping .demo_list .select_list .right li:before{content:'|';margin:0 15px;}
+	.zuoping .demo_list .select_list .right li:nth-child(1):before{content:'';}
+	.zuoping .demo_list .select_list .right ul li a{color:#FFF;}
+	.zuoping .demo_list .select_list:after{content:'';clear:both;display:block;}
+	#cat li a.active{font-weight:bold;}
+	#lightBox li{width:180px;box-shadow: 0 0 5px rgba(0,0,0,.5);}
+	#lightBox{padding:5px;}
+	#lightBox img{max-width:100%;height:auto;display:block;}
+
+	.isotope-item{
+		margin-right:-1px;
+	}
+	.isotope .isotope-item{
+		transition-property:transform,opacity;
+	}
+	.isotope,.isotope .isotope-item{
+		transition-duration:0.8s;
+	}
+
+	.zuoping .demo_list>ul li{height:150px;float:left;background:#fff;}
+	.zuoping .footer{position:absolute;left:0;bottom:20px;width:100%}
+	.zuoping .footer p{text-align:center;}
+	.zuoping .footer p a{color:#00ff00;}
+
+	.contact .content{position:relative;width:450px;margin:50px auto 0;height:360px;padding:10px;}
+	.contact .content .topLeft{position:absolute;top:0;left:0;width:100px;height:100px;border-top:6px solid #ff9900;border-left:6px solid #f90;}
+	.contact .content .bottomRight{position:absolute;bottom:0;right:0;width:100px;height:100px;border-bottom:6px solid #ff9900;border-right:6px solid #f90;}
+	.contact .content .center{width:350px;margin:50px auto 0;height:300px;}
+	.contact .content ul li{display:inline-block;margin-top:35px;width:34px;height:34px;}
+	.contact .content ul li a{position:relative;display:block;width:100%;height:100%;border-radius:50%;background:#404040;}
+	.contact .content ul li a img{display:block;width:18px;height:18px;margin:0 auto;padding-top:8px;}
+	.contact .content ul li a span{
+		display: none;
+		width: 60px;
+		height: 30px;
+		background: #337ab7;
+		position: absolute;
+		top: -42px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 30px;
+		color: #fff;
+		font-size: 12px;
+		margin-left:-13px;
+	}
+	.contact .content ul li a span:after{    
+		content: "";
+		position: absolute;
+		right: 22px;
+		top: 30px;
+		width: 0;
+		height: 0;
+		border-left: 8px solid transparent;
+		border-top: 8px solid #337ab7;
+		border-right: 8px solid transparent;
+	}
+	.contact .content ul li:hover a span{display:block;}
+	.contact .content .center h1 span{color:#ffd200;}
+	.contact .content .center h2 span:nth-child(1){color:#9933ff;padding-right:16px;}
+	.contact .content .center h2 span:nth-child(2){color:#00ff00;padding-right:16px;}
+	.contact .content .center h2 span:nth-child(3){color:#ff0033;padding-right:16px;}
+	.contact .content .center h2 span:nth-child(4){color:#33ffff;}
+
+	.mail{width:150px !important;margin-left:-54px !important;}
+	.mail:after{right:70px !important;}
+  </style>
+ </head>
+ <body>
+	<div id="loading">
+		<p>0%</p>
+	</div>
+	<div id="container">
+		<div id="silder">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="content">
+			<div class="header">
+				<div class="btn"></div>
+			</div>			
+			<div class="lunbo page">
+				<ul>
+					<li style="background-image:url(img/lun1.jpg)"></li>
+					<li style="background-image:url(img/lun2.jpg)"></li>
+					<li style="background-image:url(img/lun3.jpg)"></li>
+					<li style="background-image:url(img/lun4.png)"></li>
+				</ul>
+				<div class="bg">
+					<div class="box">
+						<h1>Hello, Welcome</h1>
+						<h2>欢迎来到我的网页</h2>
+						<p>Live a more than desultory life，open arms to poems and distant lands</p>
+						<p>我叫陈康华</p>
+						<p>一名前端开发工程师</p>
+						<p>chenkhboy@163.com</p>						
+					</div>
+					<img src="img/arrow2.png"/>
+				</div>
+			</div>
+			<div class="jieshao page" style="background:url(img/W-bg2.jpg)">
+				<div class="bg">
+					<div class="box">
+						<img src="img/touxiang.jpg" alt="" />
+						<p>您好，我叫陈康华，23岁。对前端很感兴趣，今后的职业规划是朝着全栈发展，目前在学Node、Vue。 本人在公司主要负责整个页面的前端开发，配合后台人员实现产品前端界面效果与功能。写过响应式页面，移动端页面，pc端页面。小的来说，商城，企业网站，视频，音频，评论，地图等都有涉及。</p>
+						<p>不浮躁，喜欢前端，执行力，学习能力都棒棒哒！</p>
+					</div>
+				</div>				
+			</div>
+			<div class="skills page" style="background:url(img/W-bg7.jpg)">
+				<div class="bg">
+					<div class="box">
+						<div class="title">前端技能</div>
+						<div class="subTitle">-Web Skill-</div>
+						<p>前端的知识面非常广泛,吃透它需要具有持之以恒的精神。而在前端开发的学习工作中，重中之重就是对于原生javascript的理解和把握，从而在此基础上学习新的框架（JQuery、Bootstrap、Vue、Node等）</p>
+						<ul class="list">
+							<li>
+								<div class="front">
+									<img src="img/c1.png" alt="" /><p>HTML</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>深刻理解Web标准</li>
+										<li>熟练运用html标签</li>
+										<li>掌握html5如canvas,localStorage,navigator等新特性</li>
+									</ul>
+								</div>
+							</li>		
+								
+							<li>
+								<div class="front">
+									<img src="img/c2.png" alt="" /><p>CSS</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>熟练运用css及css3新属性</li>
+										<li>注重浏览器兼容性，熟悉常见的css hack（兼容至IE8）</li>
+										<li>掌握@keyframes制作动画效果</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="front">
+									<img src="img/c3.png" alt="" /><p>Javascript</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>掌握原生JS的编程</li>
+										<li>注重JavaScript性能优化</li>
+										<li>熟练运用jQuery.js</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="front">
+									<img src="img/c4.png" alt="" /><p>Ajax</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>脱离jquery自己封装ajax函数</li>
+										<li>掌握瀑布流和留言板功能的实现</li>
+										<li>掌握ajax跨域解决方案JSONP</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="front">
+									<img src="img/c5.png" alt="" /><p>Bootstrap</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>熟悉Bootstrap样式和组件的书写</li>
+										<li>熟练运用其处理响应式页面</li>
+										<li>明白媒体查询的原理并灵活运用</li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="front">
+									<img src="img/c6.png" alt="" /><p>Vue.js</p> <i></i>
+								</div>
+								<div class="back">
+									<ul>
+										<li>熟悉Vue.js处理移动端的模块开发</li>
+										<li>模块组件化</li>
+										<li>了解双绑的背后实现</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>				
+			</div>
+			<div class="jingli page" style="background:url(img/W-bg3.jpg)">
+				<div class="bg">
+					<div class="box">
+						<div class="title">我的经历</div>
+						<div class="subTitle">-Experience-</div>
+						<p>平凡孕育不平凡</p>						
+						<div class="left">
+							<div class="top">
+								<span class="num">2017</span>
+								<span class="year">YEAR</span>
+							</div>
+							<ul>
+								<li>
+									<dl>
+										<dt>2015</dt>
+										<dd>12月</dd>
+									</dl>
+									<div class="node">										
+									</div>
+									<i></i>
+								</li>
+								<li>
+									<dl>
+										<dt>2016</dt>
+										<dd>06月</dd>
+									</dl>
+									<div class="node"></div>
+									<i></i>
+								</li>
+								<li>
+									<dl>
+										<dt>2017</dt>
+										<dd>06月</dd>
+									</dl>
+									<div class="node"></div>
+									<i></i>
+								</li>
+							</ul>
+						</div>
+						<div class="right">
+							<ul>
+								<li>
+									<dl>
+										<dt>在南京吉山光电科技有限公司实习</dt>
+										<dd><技术部/前端开发工程师></dd>
+										<dd>负责PC端移动端页面制作。利用百度地图、google地图、leaflet.js地图插件开发后台路灯控制系统，使用简单的php语句，处理传输的数据并生成相应的数据文本。</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>从南京信息职业技术学院毕业</dt>
+										<dd><大专/软件测试></dd>
+										<dd>获得大学英语三级证书 获得计算机二级</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>在南京吉山光电科技有限公司转正</dt>
+										<dd><技术部/前端开发工程师></dd>
+										<dd>负责PC端移动端页面制作。利用HTML、JS、CSS3书写前端功能，让页面更充实丰富。 利用bootstrap开发AdminLTE后台管理模板快速开发自适应后台管理页面，配合后台人员实现产品前端界面效果与功能。 2017年06月初从该公司离职。</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>						
+					</div>
+				</div>
+			</div>
+			<div class="zuoping page" style="background:url(img/W-bg4.jpg)">
+				<div class="bg">
+					<div class="box">
+						<div class="title">个人作品</div>
+						<div class="subTitle">-Demo-</div>
+						<div class="demo_list">
+							<div class="select_list">
+								<div class="left">FILTER BY TYPE:</div>
+								<div class="right">
+									<ul id="cat">
+										<li><a href="" class="active" data-filter="*">All</a></li>
+										<li><a href="" data-filter=".web">页面仿写</a></li>
+										<li><a href="" data-filter=".js">js特效</a></li>
+										<li><a href="" data-filter=".bootstrap">bootstrap页面</a></li>
+										<li><a href="" data-filter=".phone">移动端页面</a></li>
+									</ul>
+								</div>
+							</div>
+							<ul id="lightBox">
+								<li class="web"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="js"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="js"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="web"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="bootstrap"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="phone"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="js"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+								<li class="js"><a href="#"><img src="img/lun1.jpg" alt="" /></a></li>
+							</ul>
+						</div>
+						<div class="footer">
+							<p>更多作品 点击 <a href="https://github.com/sysBlackFox">github</a> 查看</p>
+						</div>
+						
+					</div>					
+				</div>
+			</div>
+			<div class="contact page" style="background:url(img/W-bg1.jpg)">
+				<div class="bg">
+					<div class="box">
+					<div class="title">联系我</div>
+						<div class="subTitle">-Contact-</div>
+						<p><span>相逢即是有缘，有缘江湖再见</span></p>
+						<div class="content">
+							<div class="topLeft"></div>
+							<div class="center">
+								<h1><span>CONTACT</span>FOR ME</h1>
+								<h2><span>灵感</span><span>代码</span><span>梦想</span><span>未来</span></h2>
+								<p>学习是一个充实愉悦的过程</p>
+								<p>喜欢尝试，期待新鲜事物</p>
+								<p>前端即兴趣，兴趣即未来</p>
+								<p>行路有良友，便是捷径</p>
+								<p>期待有机会与您共事！</p>
+								<ul>
+									<li><a href=""><img src="img/github.png"/><span>github</span></a></li>
+									<li><a href=""><img src="img/mail.png"/><span class="mail">chenkhboy@163.com</span></a></li>
+									<li><a href=""><img src="img/qq.png"/><span class="qq">qq</span></a></li>
+									<li><a href=""><img src="img/wechat.png"/><span class="wechat">wechat</span></a></li>
+									<li><a href=""><img src="img/weibo.png"/><span class="weibo">weibo</span></a></li>
+								</ul>
+							</div>
+							<div class="bottomRight"></div>
+						</div>
+					</div>	
+				</div>							
+			</div>
+		</div>
+	</div>
+ </body>
+  <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+ <script type="text/javascript">
+	(function(){
+		var skillBox = $(".skills .list>li");
+		var skillLen = skillBox.length;
+		for(var i=0; i<skillLen; i++){
+			console.log(skillBox.eq(i));
+			skillBox.eq(i).css({"transform":"translate("+(-480+190*i)+"px,50px) scale(1)","transiton":" 1s "+ (skillLen-1-i)*0.1 +"s"});
+		}
+	})();
+	var $container = $("#lightBox");
+    $container.isotope({
+        filter:"*",
+        animationOptions:{
+            duration:770,
+            easing:"linear"
+        },
+        layoutMode:"cellsByRow",
+        cellsByRow:{
+            columnWidth:195,
+            rowHeight:190
+        }
+    });
+	 $("#cat a").click(function(){
+        $("#cat a").removeClass("active");
+        $(this).addClass("active");
+        var selector = $(this).attr("data-filter");
+        $container.isotope({
+            filter:selector,
+            animationOptions:{
+                duration:750,
+                easing:"linear"
+            }
+        });
+        return false;
+    });
+
+	/*setTimeout(function(){
+		$(document).scrollTop(0);
+	},50);*/
+	var $part = $('.page');
+	var $li = $('#silder ul li');
+	var $img = $('.page img');
+	
+	//页面滚动
+	(function(){
+		var index = 0;
+		var wH = $(window).height();
+		var nowTime = new Date();
+
+		$(window).resize(function(){
+			wH = $(window).height();
+		});
+		$li.click(function(){
+			index = $(this).index();
+			move();
+		});
+		$(document).mousewheel(function(){
+			if ( new Date() - nowTime > 500 )
+			{
+				nowTime = new Date();
+				var d = arguments[1];
+				index=d<0?(index>=$li.length-1?0:index+1):(index<=0?$li.length-1:index-1);
+				move();
+			};
+		});
+		function move(){
+			$li.eq(index).addClass('on').siblings().removeClass('on');
+			$('body,html').animate({
+				scrollTop : index*wH
+			},500);
+			
+		}
+	})();
+
+ </script>
+ </html>

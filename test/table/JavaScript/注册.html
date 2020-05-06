@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册</title>
+  <script type="text/javascript" src="cookie.js"></script>
+ 
+</head>
+<body>
+  <form action="">
+    <h2>注册</h2>
+    <div class="field">
+      <label for="phone">手机号</label>
+      <input type="text" name="" id="tel">
+      <span id="tel-warn"></span>
+    </div>
+    <div class="field">
+      <label for="name">姓名</label>
+      <input type="text" id="name" name="">
+      <span id="name-warn"></span>
+    </div>
+    <div class="field">
+      <label for="key">密码</label>
+      <input type="password" id="key" name="">
+      <span id="key-warn"></span>
+    </div>
+    <div class="field">
+      <label for="key2">再次输入密码</label>
+      <span id="key2-warn"></span>
+    </div>
+    <div class="field">
+      
+      <input type="button" id="btn" name="" value="注册">
+      <a href="登录.html">去登录</a>
+    </div>
+  </form>
+</body>
+</html>
+<script> 
+  var oTel=document.getElementById("tel");
+  var name=document.getElementById("name");
+  var key=document.getElementById("key");
+  var key2=document.getElementById("key2");
+  var obtn=document.getElementById("btn");
+  var oTelwarn=document.getElementById("tel-warn");
+  var oNamewarn=document.getElementById("name-warn");
+  var oKeywarn=document.getElementById("key-warn");
+  var oKeywarn2=document.getElementById("key2-warn");
+  // 设置正则
+  var reg=/^1[34578]\d{9}$/;
+  var reg1 = /^[a-zA-Z0-9_\u4e00-\u9fa5]{3,10}$/; //字母数字中文下划线
+  var reg2=/^\w{6,12}$/;
+  oTel.onblur=function(){
+    if (reg.test(oTel.value)) {
+      oTelwarn.innerHTML="正确";
+      oTelwarn.style.color="green";
+    }else{
+      oTelwarn.innerHTML="X请输入11位手机号";
+      oTel.value="";
+      oTelwarn.style.color="red";
+    }
+  }
+  oName.onblur=function(){
+    if (reg1.test(oName.value)) {
+      oNamewarn.innerHTML="正确";
+      oNamewarn.style.color="green";
+    }else{
+      oNamewarn.innerHTML="X请输入3-10位字母数字中午下划线";
+      oNamewarn.value="";
+      oNamewarn.style.color="red";
+    }
+  }
+  oKey.onblur=function(){
+    if (reg2.test(oKey.value)) {
+      oKeywarn.innerHTML="正确";
+      oKeywarn.style.color="green";
+    }else{
+      oKeywarn.innerHTML="请输入6-12位字母数字下划线";
+      oKeywarn.value="";
+      oKeywarn.style.color="red";
+    }
+  }
+  oKey2.onblur=function(){
+    if (oKey2.value==oKey.value) {
+      oKeywarn2.innerHTML="正确";
+      oKeywarn2.style.color="green";
+    }else{
+      oKeywarn2.innerHTML="两次输入的密码不一致";
+      oKeywarn2.value="";
+      oKeywarn2.style.color="red";
+    }
+  }
+
+  oBtn.onclick=function(){
+    var val="name"+":"+name.value+","+"key"+":"+key.value+","+"tel"+":"+oTel.value;
+    createCookie("user",val);
+    if (getCookie("bank")) {
+      var bankVal=getCookie("bank")+"&"+val;
+    }else{
+      var bankVal=val;
+    }
+    createCookie("bank",bankVal,100);
+    window.location.href="index.html";
+  }
+
+
+
+
+  obtn.onclick=function(){
+    var val=name.value+":"+key.value;
+    setCookie("user",val,7);
+   //  判断之前是否存在
+   if(getCookie("bank")){
+     var bankVal=getCookie("bank")+"_"+val;
+   }else{
+     var bankVal=val;
+   }
+   // 存放到库中
+   setCookie("bank",bankVal,100);
+   window.location.href="index.html";
+
+  }
+</script>

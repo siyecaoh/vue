@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link href="" type="image/x-icon" rel="shortcut icon" />
+  <title>我的简历</title>
+  <style type="text/css">
+	*{padding:0;margin:0;}
+	html,body{height:100%;background:#404040;}
+	a{text-decoration:none;color:#ff9900;font-family:'Micorsoft yahei';font-size:16px;font-weight:bold;}
+	#box{width:80%;margin:50px auto 0;border:1px solid #fff;height:200px;text-align:center;color:#fff;padding:5px;}
+	#box li{list-style:none;float:left;width:80px;padding:5px 8px;margin-right:10px;margin-top:10px;background:#fff;border-radius:3px;color:#33ffff;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+  </style>
+ </head>
+ <body>
+	<div id="box">
+		<h1>练习小例子</h1>
+		<ul id="ul"></ul>
+	</div>
+	<script type="text/javascript">
+		var json ={
+			"3D旋转":"/halou",
+			"blog":"/blog"
+		};
+		var ul = document.getElementById("ul");
+		var shtml ='';
+		for( var key in json ){
+			shtml+='<li><a href="'+json[key]+'" title="'+ key +'">'+ key +'</a></li>';
+		}
+		ul.innerHTML=shtml;
+	</script>
+ </body>
+ </html>

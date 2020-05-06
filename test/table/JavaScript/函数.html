@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        //  function doAdd(){
+        //      if (arguments.length==1) {
+        //         console.log( arguments[0]+10);
+        //      }else if (arguments.length==2) {
+        //          console.log(arguments[0]+arguments[1]);
+        //      }
+        //  }
+        //  doAdd(10);//20
+        //  doAdd(20,30);//50
+
+
+
+
+
+        //  function doAdd1(num1,num2){
+        //      if (arguments.length==1) {
+        //          console.log(num1+10);
+        //      }else if (arguments.length==2) {
+        //          console.log(num1+num2);
+        //      }
+        //  }
+
+        //  doAdd1(10,20);//30
+
+
+
+        // function setName(obj){
+        //     obj.name='hhc';
+        // }
+        // var person=new Object();
+        // setName(person);
+        // console.log(person.name);
+
+
+        // function setName1(obj){
+        //     obj.name='hc';
+        //     var obj = new Object();
+        //     obj.name='meng';
+        // }
+        // var person =new Object();
+        // setName1(person);
+        // console.log(person.name);
+
+
+        // console.log(person instanceof Object);
+
+
+        // // var scope='global';
+        // // function fn(){
+        // //     // 变量提升
+        // //     console.log(scope); //undefined
+
+        // //     var scope='local';
+        // //     console.log(scope); //local
+        // // }
+
+
+        // // var scope='global';
+        // // function fn(){
+        // //     var scope;
+        // //     console.log(scope); //undefined
+
+        // //     scope='local';
+        // //     console.log(scope); //local
+        // // }
+
+        // var color="blue";
+        // function changeColor(){
+        //     if (color==='blue') {
+        //         color="red";
+        //     }else{
+        //         color="blue"
+        //     }
+        // }
+        // // changeColor();
+        // // alert(color);//red
+
+
+        // var color="blue";
+        // function changeColor(){
+        //     var anotherColor="red";
+        //     function swapColors(){
+        //         var tempColor=anotherColor;
+        //         anotherColor=color;
+        //         color=tempColor;
+        //     }
+
+        //     swapColors();
+        //     alert(color); //red
+        // }
+        // changeColor();
+        // alert(color); //red
+
+
+        // var obj=new Object();
+        // obj.name='hhc';
+
+
+        // var person={
+        //     name:"hhc",
+        //     age:2
+        // };
+
+
+        // function displayInfo(args){
+        //     var output="";
+        //     if (typeof args.name=="string") {
+        //         output+="Name:"+args.name+"\n";
+        //     }
+        //     if (typeof args.age=='number') {
+        //         output+="Ags:"+args.age+"\n";
+        //     }
+        //     alert(output);
+        // }
+
+        // displayInfo({
+        //     name:"hhc",
+        //     age:2
+        // });
+        // displayInfo({
+        //     name:"hll"
+        // });
+
+        // var colors=new Array(2);
+        // var colors=new Array("red","green");
+
+        // var colors=["red","green"];
+
+
+        // if (Array.isArray(value)) {
+        //     // 对数组执行操作
+        // }
+
+        
+        // // 升序排列
+        // function compare(value1,value2){
+        //     if (value1<value2) {
+        //         return -1;
+        //     }else if (value1>value2) {
+        //         return 1;
+        //     }else{
+        //         return 0;
+        //     }
+        // }
+
+
+        // // 降序排列
+        // function compare(value1,value2){
+        //     if (value1<value2) {
+        //         return 1;
+        //     }else if (value1>value2) {
+        //         return -1;
+        //     }else{
+        //         return 0;
+        //     }
+        // }
+
+
+
+        // var colors=new Array();
+        // // 在数组末尾添加项，返回修改后数组的长度
+        // var count=colors.push(("red","blue"));
+        // alert(count);//2
+
+        // //  从数组末尾移除最后一项，返回的是移除的项
+        // var item=colors.pop();
+        // alert(item);//blue
+        // alert(colors.length);//1
+
+
+        // var colors=new Array();
+        // // 在数组的末尾添加项，返回数组长度
+        // var count=colors.push("red","blue","black");
+        // // 在数组开头删除一项，返回删除项
+        // var item=colors.shift();
+        // alert(item);
+        // // 在数组开头添加项，返回数组长度
+        // var count=colors.unshift("green");
+        // alert(count);
+
+
+        // var values=[1,2,3];
+        // // 将数组的项反转
+        // values.reverse();
+        // alert(values);//3,2,1
+
+
+        // var value=[1,4,56,22,8];
+        // // 按照升序排列数组
+        // values.sort();
+        // alert(value);//1,4,8,22,56
+
+        // function compare(value1,value2){
+        //     if (value1<value2) {
+        //         return -1;
+        //     }else if (value1>value2) {
+        //         return 1
+        //     }else{
+        //         return 0;
+        //     }
+        // }
+        // var values=[1,34,5,6];
+        // values.sort(compare);
+        // alert(values);
+
+        // var colors=["red","green","blue"];
+        // var colors2=colors.concat("yellow",["black","pink"]);
+        // alert(colors);
+        // alert(colors2);
+
+        // var colors=["red","green","blue","pink"];
+        // // 一个参数，返回从该参数指定位置开始到当前数组末尾的所有项
+        // var colors2=colors.slice(1);//green,blue,pink
+
+        // // 两个参数，返回起始和结束位置之间的项，但不包括结束位置项
+        // var colors3=colors.slice(1,3);//green,blue
+        // alert(colors2);//
+        // alert(colors3);
+
+
+        // var colors=["red","green","blue","pink"];
+
+        // // 删除：两个参数，第一个参数是要删除的第一项的位置，第二个参数是要删除的项
+        // var remove=colors.splice(0,1);//green,blue,pink
+        
+        // // 插入：三个参数，起始位置，删除的项，要插入的项
+        // remove=colors.splice(1,0,"yellow","orange");//green,yellow,orange,blue,pink
+
+        // // 替换：三个参数，起始位置、删除的项、要插入的任意数量的项
+        // remove=colors=splice(1,1,"purple","gold");//red,purple,gold,blue,pink
+
+        // var num=[1,3,4,56,1,3,7];
+        // alert(num.indexOf(4));
+
+        // var num=[1,2,3,4,5,4,3,2,1];
+        // var everyResult=num.every(function(item,index,array){
+        //     return (item>2);
+        // });
+        // alert(everyResult);//false
+
+        // var someResult=num.some(function(item,index,array){
+        //     return (item>2);
+        // })
+        // alert(someResult);//true
+
+
+        // var filterResult=num.filter(function(item,index,array){
+        //     return (item>2);
+        // });
+        // alert(filterResult);//[3,4,5,4,3]
+
+
+        // var mapResult=num.map(function(item,index,array){
+        //     return item*2;
+        // });
+        // alert(mapResult);//
+
+
+        // var values=[1,2,3,4,5];
+        // var sum=values.reduce(function(prev,cur,index,array){
+        //     return prev+cur;
+        // })
+
+        // var date=new Date(Date.parse("May 25,2020"));
+        // var t=new Date(Date.UTC(2000,0));
+
+        // var text="mom and dad and baby";
+        // var pattern=/mom(and dad(and baby)?)?/gi;
+        // var matches=pattern.exec(text);
+        // alert(matches.index);//0
+        // alert(matches.input);//"mom and dad and baby"       
+
+
+        // var text="000-00-0000";
+        // var pattern=/\d{3}-\d{2}-\d{4}/;
+        // if (pattern.test(text)) {
+        //     alert("The pattern was matched");
+        // }
+
+        // alert(sum(1,1));//2，变量声明提前
+        // 函数声明
+        // function sum(num1,num2){
+        //     return num1+num2;
+        // }
+
+        
+        // // 函数表达式
+        // var sum1=function(num1,num2){
+        //     return num2+num1;
+        // }
+        // alert(sum1(2,2));//报错，sum1不是一个函数
+
+        // 值函数：将一个函数作为参数传递给另一个函数，或是将一个函数作为另一个函数的结果返回
+        // 函数接收两个参数，第一个参数是一个函数，第二个参数是要传递给该函数的一个值
+        // function callSomeFunction(someFunction,someArgument){
+        //     return someFunction(someArgument);
+        // }
+
+        // function add10(num){
+        //     return num+10;
+        // }
+        
+        // var res=callSomeFunction(add10,10);
+        // alert(res);//20
+
+
+        // function getGreeting(name){
+        //     return "Hello,"+name;
+        // }
+
+        // var res2=callSomeFunction(getGreeting,"hhc");
+        // alert(res2);//Hello hhc
+
+
+        // // 根据某个对象的属性对数组进行排序
+
+        // function createComparisonFunction(propertyName){
+        //     return function(object1,object2){
+        //         var value1=object1[propertyName];
+        //         var value2=object2[propertyName];
+        //         if (value1<value2) {
+        //             return -1;
+        //         }else if (value1>value2) {
+        //             return 1;
+        //         }else{
+        //             return 0;
+        //         }
+        //     };
+        // }
+
+        // var data=[{name:"hhc",age:11},{name:"hss",age:2}];
+        // data.some(createComparisonFunction("name"));
+        // alert(data[0].name);//hhc
+        
+        // data.sort(createComparisonFunction("age"));
+        // alert(data[0].age);//hss
+
+       
+        //在函数有名字，而且名字以后也不会变的情况下，这样定义是没问题的
+        // 存在问题：这个函数的执行与函数名factorial紧紧耦合在了一起，为了消除这种紧密耦合的现象
+        // 使用arguments.callee
+        // function factorial(num){
+        //     if (num<=1) {
+        //         return 1;
+        //     }else{
+        //         return num*factorial(num-1)
+        //     }
+        // }
+
+
+        // function factorial(num){
+        //     if (num<=1) {
+        //         return 1;
+        //     }else{
+        //         // 重写后的factorial函数体内，没有再引用函数名factorial。
+        //         // 这样，无论引用函数时使用的是什么名字，都可以保证正常完成地柜调用
+        //         // callee属性，是一个指针，指向拥有这个arguments对象的函数
+        //         return num*arguments.callee(num-1);
+        //     }
+        // }
+
+
+        // function outer(){
+        //     inner();
+        // }
+        // function inner(){
+        //     alert(arguments.callee.caller);
+        // }
+
+        // function sum(num1,num2){
+        //     return num1+num2;
+        // }
+        // function callSum1(num1,num2){
+        //     return sum.apply(this,arguments);
+        // }
+
+        // function callSum2(num1,num2){
+        //     return sum.apply(this,[num1,num2]);
+        // }
+
+        // function callSum(num1,num2){
+        //     return sum.call(this,num1,num2);
+        // }
+
+        // 扩充函数赖以运行的作用域,优点是对象不需要与方法有任何耦合关系
+        // window.color="red";
+        // var o={color:"blue"};
+
+        // function sarColor(){
+        //     alert(this.color);
+        // }
+        // sarColor();//red
+
+        // sarColor.call(this);//red
+        // sarColor.call(window);//red
+        // sarColor.call(o);//blue
+
+        // window.color="red";
+        // var o={color:"blue"};
+
+        // function sayColor(){
+        //     alert(this.color);
+        // }
+
+        // var objectSayColor=sarColor.bind(o);
+        // objectSayColor();//blue
+
+        // var stringValue="hello word";
+        // alert(stringValue.slice(3,7));
+        // alert(stringValue.substr(3,7));
+        // alert(stringValue.substring(3,7));
+
+        // var stringValue="good good study,day day up";
+        // var positions=new Array();
+        // var pos=stringValue.indexOf("e");
+        // while(pos>-1){
+        //     positions.push(pos);
+        //     pos=stringValue.indexOf("e",pos+1);
+        // }
+        // alert(positions);
+
+        // var text="cat, bat, sat, fat";
+        // var pattern=/.at/;
+        // var matches=text.match(pattern);
+
+        // pattern.exec(text);
+
+        // var pos=text.search(/at/);
+        // alert(pos);//1
+
+
+        // var res=text.replace(/at/g,"ond");
+        // var result=text.replace("at","ond");
+
+
+
+
+
+    </script>
+</head>
+<body></body>
+    <!-- <frameset rows="120,*">
+        <frame src="基本数据类型.html" name="topFrame">
+            <frameset cols="50%,50%">
+                <frame src="Ch25/FileAPIExample01.htm" name="leftFrame">
+                <frame src="Ch25/FileAPIExample02.htm" name="rightFrame">
+            </frameset> 
+    </frameset> -->
+
+</html>

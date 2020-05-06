@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 避免重复提交表单
+    EventUtil.addHandler(form,"submit",function(event){
+      event=EventUtil.getTarget(event);
+      var btn=target.elements["submit-btn"];
+      btn.disabled=true;
+    })
+
+
+
+    var textbox=document.forms[0].elements[0];
+    EventUtil.addHandler(textbox,"focus",function(event){
+      event=EventUtil.getEvent(event);
+      var target=EventUtil.getTarget(event);
+      if (target.style.backgroundColor!="red") {
+        target.style.backgroundColor="yellow";
+      }
+    });
+
+    EventUtil.addHandler(textbox,"blur",function(event){
+      event=EventUtil.getEvent(event);
+      var target=EventUtil.getTarget(event);
+      if (/[^\d]/.test(target.value)) {
+        target.style.backgroundColor="red";
+      }else{
+        target.style.backgroundColor=" ";
+      }
+    });
+
+    EventUtil.addHandler(textbox,"change",function(event){
+      event=EventUtil.getEvent(event);
+      var target=EventUtil.getTarget(event);
+      if (/[^\d]/.test(target.value)) {
+        target.style.backgroundColor="red";
+      }else{
+        target.style.backgroundColor=" ";
+      }
+    });
+
+
+    EventUtil.addHandler(textbox,"focus",function(event){
+      event=EventUtil.getEvent(event);
+      var target=EventUtil.getTarget(event);
+      target.select();
+    })
+
+
+    function selectText(textbox,startIndex,stopIndex){
+      if (textbox.setSelectionRange) {
+        textbox.setSelectionRange(startIndex,stopIndex);
+
+      }else if (textbox.createTextRange) {
+        var range=textbox.createTextRange();
+        range.collapse(true);
+        range.moveStart("character",startIndex);
+        range.moveEnd("character",stopIndex-startIndex);
+        range.select();
+      }
+      textbox.focus();
+    }
+
+
+
+
+    EventUtil.addHandler(textbox,"keypress",function(event){
+      event=EventUtil.getEvent(event);
+      var target=EventUtil.getTarget(event);
+      var charCode=EventUtil.getCharCode(event);
+      if (!/\d/.test(String.fromCharCode(charCode))&&charCode>9&&!event.ctrlKey) {
+        EventUtil.preventDefault(event);
+      }
+    })
+
+
+    var EventUtil={
+      getClipboardData:function(event){
+        var clipboardData=(event.clipboardData||window.clipboardData);
+        return clipboardData.getData("text");
+      }
+
+      // setClipboardText:function(event,value){
+      //   if (event.clipboardData) {
+      //     return event.clipboardData.setData("text/plain",value);
+      //   }else if ((window.clipboardData)) {
+      //     return window.clipboardData.setData("text",value);
+      //   }
+      // }
+      
+    }
+
+
+
+    // 自动切换焦点
+
+    (function(){
+      function tabForward(event){
+        evnet=EventUtil.getEvent(event);
+        var target=EventUtil.getTarget(event);
+        if (target.value.length==target.maxLength) {
+          var form=target.form;
+          for(var i=0,len=form.elements.length;i<len;i++){
+            if (form.elements[i]==target) {
+              if (form.elements[i+1]) {
+                form.elements[i+1].focus();
+              }
+              return;
+            }
+          }
+        }
+      }
+    })();
+
+
+
+
+    //  表单序列化
+    function serialize(form){
+      // 保存要创建的字符串的各个部分
+      var parts=[];
+      var field=null;
+      var i,len,j,optLen,option,optValue;
+      // 循环迭代表单字段
+      for(i=0,len=form.elements.length;i<len;i++){
+        field=form.elements[i];
+        // 在获得了一个字段的引用之后，使用switch语句检测其type属性
+        switch(field.type){
+          // 单选框、多选框
+          case "select-one":
+          case "select-multiple":
+          if (field.name.length) {
+            for(j=0,optLen=field.options.length;j<optLen;j++){
+              option=field.options[j];
+              if (option.selected) {
+                optValue=" ";
+                // 在找到一个选中项之后，需要确定使用什么值，如果不存在value特性，或虽然存在该特性，但值为空字符串，
+                // 均使用选项的文本来代替
+                if (option.hasAttribute) {
+                  optValue=(option.hasAttribute("value")?option.value:option.text);
+
+                }else{
+                  optValue=(option.attribute("value").specified?option.value:option.text);
+                }
+                parts.push(encodeURIComponent(field.name)+"="+encodeURIComponent(optValue));
+              }
+            }
+          }
+          break;
+
+          case undefined:
+          case "file":
+          case "submit":
+          case "reset":
+          case "button":
+          break;
+
+          case  "radio":
+          case "checkbox":
+          // 对于单选按钮和复选框，要检查其checked属性是否被设置为false，如果是则退出循环
+          if (!field.checked) {
+            break;
+          }
+
+          default:
+            if (field.name.length) {
+              parts.push(encodeURIComponent(field.name))+"="+encodeURIComponent(field.value);
+            }
+        }
+      }
+      return parts.join("&");
+    }
+
+
+    
+      var book={
+        "title":"01",
+        "authors":[
+          "a1",
+          "a2"
+        ],
+        edition:2,
+        year:2000,
+        releaseDate:new Date(2011,11,1)
+      };
+
+      var jsonText=JSON.stringify(book);
+      var bookCopy=JSON.parse(jsonText,function(key,value){
+        if (key=="releaseDate") {
+          return new Date(value);
+        }else{
+          return value;
+        }
+      })
+
+      function createXHR(){
+        if (typeof XMLHttpRequest !="undefined") {
+          return new XMLHttpRequest();
+        }else if (typeof ActiveXObject!="undefined") {
+          if (typeof arguments.callee.activeXString!="string") {
+            var versions=[
+              
+            ],
+            i,len;
+            for(i=0,len=versions.length;i<len;i++){
+              try{
+                new ActiveXObject(versions[i]);
+                arguments.callee.activeXString=versions[i];
+                break;
+              }catch(ex){
+
+              }
+            }
+          }
+          return new ActiveXObject(arguments.callee.activeXString);
+        }else{
+          throw new Error("No XHR object availiable");
+        }
+      }
+
+
+
+      var xhr=createXHR();
+      xhr.onreadystatechange=function(){
+        if (xhr.readyState==4) {
+          if((xhr.status==200 &&xhr.status<300)||xhr.status==304) {
+            console.log(xhr.responeText);
+          }else{
+            console.log(xhr.status);
+          }
+        }
+      }
+      xhr.open("get","example.txt",true);
+      xhr.send(null);
+
+
+      var xhr=createXHR();
+      xhr.onreadystatechange=function(){
+        if (xhr.readyState==4) {
+          if ((xhr.status==200&&xhr.status<300)||xhr.status==304) {
+            console.log(xhr.responeText);
+          }else{
+            console.log(xhr.status);
+          }
+        }
+      }
+
+
+      xhr.open("post","postexample.php",true);
+      xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+      var form=document.getElementById("user-info");
+      xhr.send(serialize(form));
+
+
+      xhr.send(new FormData(form));
+      xhr.timeout=1000;
+      xhr.ontimeout=function(){
+
+      };
+      xhr.send(null);
+
+
+      xhr.onprogress=function(event){
+        var divStatus=document.getElementById("status");
+        if (event.lengthComputable) {
+          divStatus.innerHTML="Received"+event.position+"of"+event.totalSize+"byte";
+        }
+      };
+      xhr.open("get","a.php",true);
+      xhr.send(null);
+    
+
+ 
+
+
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

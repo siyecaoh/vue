@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新颖多边形导航特效</title>
+		<style type="text/css">
+		*{
+			margin:0px;padding:0px;
+		}
+		body{
+			background:url("images/bodyBg.jpg");
+		}
+		#box{
+			width:980px;height:200px;
+			/*background:red;*/
+			margin:100px auto;
+		}
+		ul li{
+			list-style:none;
+			width:180px;height:105px;
+			background:rgba(0,0,0,.5);
+			float:left;
+			margin:30px 5px;
+			position:relative;
+		}
+		.six{
+			margin-left:100px;
+		}
+		ul li:before{
+			content:"";
+			display:block;
+			width:180px;height:105px;
+			background:rgba(0,0,0,.5);
+			position:absolute;
+			left:0px;top:0px;
+			transform:rotate(60deg);
+
+		}
+		ul li:after{
+			content:"";
+			display:block;
+			width:180px;height:105px;
+			background:rgba(0,0,0,.7);
+			position:absolute;
+			left:0px;top:0px;
+			transform:rotate(-60deg);
+			z-index:1;
+		}
+		ul li img{
+			position:absolute;
+			left:0px;top:0;right:0;bottom:0;margin:auto;
+			z-index:2;
+			transition:1s;
+		}
+		img:hover{
+			-webkit-transform:rotate(360deg) scale(1.5);/*谷歌*/
+			-moz-transform:rotate(360deg) scale(1.5);/*火狐*/
+			-ms-transform:rotate(360deg) scale(1.5);/*IE*/
+			-o-transform:rotate(360deg) scale(1.5);/*欧鹏*/
+			transform:rotate(360deg) scale(1.5);
+		}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="images/1.png"></li>
+				<li><img src="images/2.png"></li>
+				<li><img src="images/3.png"></li>
+				<li><img src="images/4.png"></li>
+				<li><img src="images/5.png"></li>
+				<li class="six"><img src="images/6.png"></li>
+				<li><img src="images/7.png"></li>
+				<li><img src="images/8.png"></li>
+				<li><img src="images/9.png"></li>
+				<li><img src="images/10.png"></li>
+				<li><img src="images/11.png"></li>
+				<li><img src="images/12.png"></li>
+				<li><img src="images/13.png"></li>
+				<li><img src="images/14.png"></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+    var person=new Object();
+    person.name="h";
+    person.age=1;
+    person.say=function(){
+      console.log(this.name);
+    }
+
+
+    var person={};
+    Object.defineProperty(person,"name",{
+      writable:false,
+      value:"hh"
+    })
+
+
+    var book={
+      _year:2002,
+      edition:1
+    };
+    Object.defineProperty(book,"year",{
+      get:function(){
+        return this._year;
+      },
+      set:function(newValue){
+        if (newValue>2001) {
+          this._year=newValue;
+          this.edition+=newValue-2002;
+        }
+      }
+    });
+    book._year=2003;
+
+    var book={};
+    Object.defineProperties(book,{
+      _year:{
+        value:2004
+      },
+      edition:{
+        value:1
+      },
+      year:{
+        get:function(){
+          return this._year;
+        },
+
+        set:function(newValue){
+          if (newValue>2004) {
+            this._year=newValue;
+            this.edition+=newValue-2004;
+          }
+        }
+      }
+    })
+
+
+    var book={};
+    Object.defineProperties(book,{
+      _year:{
+        value:2222
+      },
+      edition:{
+        value:1
+      },
+      year:{
+        get:function(){
+          return this._year;
+        },
+        set:function(newValue){
+          if (newValue>2222) {
+            this._year=newValue;
+            this.edition+=newValue-2222;
+          }
+        }
+      }
+    });
+    //var descriptor=Object.getOwnPropertyDescriptor(bool,"_year");
+
+
+    function createPerson(name,age){
+      var o=new Object();
+      o.name=name;
+      o.age=age;
+      o.say=function(){
+        console.log(this.name);
+      };
+      return o;
+    }
+    var person1=createPerson("hhh",22);
+
+
+    function Person(name,age){
+      this.person=person;
+      this.age=aage;
+      this.say=function(){
+        console.log("jj");
+      }
+    }
+    var person1=new Person("a",1);
+    var person2=new Person("b",2);
+
+
+    console.log(person1 instanceof Object);
+    console.log(person1 instanceof Person);
+    
+
+    function Person(){
+
+    }
+    Person.prototype.name="jj";
+    Person.prototype.age=11;
+    Person.prototype.say=function(){
+      console.log(this.name);
+    }
+
+    var person1=new Person();
+    person1.say();
+
+    function hasOwnPrototypeProperty(object,name){
+      return !object.hasOwnPrototypeProperty(name)&&(name in object);
+    }
+
+    function Person(){
+
+    }
+    Person.prototype.name="aa";
+    Person.prototype.age=1;
+    Person.prototype.say=function(){
+      console.log(this.name);
+    }
+    var keys=Object.keys(Person.prototype);
+    console.log(keys);//"name,age,say"
+
+    var p1=new Person();
+    p1.name="kk";
+    p1.age=12;
+    var p1keys=Object.keys(p1);
+    console.log(p1keys);//"name,age"
+
+
+    function Person(){
+
+    }
+    Person.prototype={
+      constructor:Person,
+      name:"ddjf",
+      age:11,
+      say:function(){
+        console.log(this.name);
+      }
+    }
+
+
+    function Person(name,age){
+      this.name=name;
+      this.age=age;
+    }
+    Person.prototype={
+      contructor:Person,
+      say:function(){
+        console.log(this.name);
+      }
+    }
+    var person1=new Person("owej",22);  
+
+    function SuperType(){
+      this.property=true;
+    }
+    SuperType.prototype.getSuperValue=function(){
+      return this.property;
+    };
+    function SubType(){
+      this.subproperty=false;
+    }
+
+    SubType.prototype=new SuperType();
+    SuperType.prototype.getSubValue=function(){
+      return this.subproperty;
+    }
+
+
+    function SuperType(){
+      this.colors=["red","blue","green"];
+    }
+    function SubType(){
+      SuperType.call(this);
+    }
+
+    var instanceo1=new SubType();
+    instanceo1.colors.push("black");
+    var instanceo2=new SubType();
+
+
+    function SuperType(name){
+      this.name=name;
+      this.colors=["red","blue","green"];
+    }
+
+    SuperType.prototype.sayName=function(){
+      console.log(this.name);
+    };
+    function SubType(name,age){
+      SuperType.call(this,name);
+      this.age=age;
+    }
+
+
+    SubType.prototype=new SuperType();
+    SubType.prototype.contructor=SubType;
+    SubType.prototype.say=function(){
+      console.log(this.age);
+    }
+
+
+    function Foo(){}
+
+    var f1=new Foo();
+    f1.a=10;
+    Foo.prototype.a=100;
+    Foo.prototype.b=200;
+    console.log(f1.a);
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+           width: 100%;
+            background: red;
+            /* 父元素没有设置高度，必须设置overflow */
+            overflow: hidden;
+        }
+        .left{
+            float: left;
+            width: 100px;
+            background: black;
+        }
+        .middle{
+            float: left;
+            width: cacl(100%-200px);
+            
+        }
+        .right{
+            float: right;
+            width: 100px;
+            background: blue;
+        }
+
+
+        /* 混合多列布局 */
+        .top{
+            height: 100px;
+            background: #000;
+        }
+        .footer{
+            height: 100px;
+            background: pink;
+        }
+        .box{
+            width: 100%;
+            background:blue;
+            overflow: hidden;
+        }
+        .le{
+            width:50%;
+            background: red;
+            float: left;
+        }
+        .rl{
+            float: right;
+            width: 50%;
+            background:green;
+        }
+        .con{
+            margin: 200px auto;
+        }
+    </style>
+
+</head>
+<body>
+    <!--三列布局-浮动 -->
+    <div class="main">
+        <div class="left">left</div>
+        <div class="middle">middle</div>
+        <div class="right">right</div>
+    </div>
+
+
+
+    <!-- 混合多列布局 -->
+   <div class="con">
+    <div class="top">top</div>
+    <div class="box">
+        <div class="le">le</div>
+        <div class="rl">rl</div>
+    </div>
+    <div class="footer">footer</div>
+   </div>
+</body>
+</html>
