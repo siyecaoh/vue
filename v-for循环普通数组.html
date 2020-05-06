@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <!-- 循环普通数组 -->
+    <!-- <p v-for="(item,i) in list">索引值：{{i}}-----{{item}}</p> -->
+
+    <!-- 循环对象数组 -->
+    <!-- <p v-for="user in list">Id:{{user.id}}---名字:{{user.name}}</p> -->
+
+
+    <!-- <p v-for="(user,i) in list">Id：{{user.id}}---名字：{{user.name}}---索引：{{i}}</p> -->
+
+
+    <!-- 循环对象 -->
+    <!-- 遍历对象键值的时候，不要忘记对象还有第三个值索引 -->
+    <!-- <p v-for="(val,key,i) in user">值：{{val}}----键值：{{key}}---索引：{{i}}</p> -->
+
+    <!-- 迭代数字 -->
+    <!-- in 后面放普通数组、对象数组、对象、数字 -->
+    <!-- <p v-for="count in 10">这是第{{count}}次循环</p> -->
+
+
+    <label for="">Id:
+      <input type="text" v-model="id">
+    </label>
+
+    <label for="">Name:
+      <input type="text" v-model="name">
+    </label>
+
+    <input type="button" value="添加" @click="add">
+
+
+
+    <!-- 注意：v-for 循环的时候 ，key 属性只能使用 number获取string -->
+    <!-- 注意：key 在使用的时候，必须使用v-bind 属性绑定形式，指定key值 -->
+    <!-- 在组件中，使用v-for循环的时候 ，或者在一些特殊情况中，如果v-for有问题
+    必须在使用v-for 的同时，指定唯一的 字符串/数字 类型：key 值-->
+    <p v-for="item in list" :key="item.id">
+      <!-- id、name都必须在list里面有效，否则报错 -->
+      <input type="checkbox">{{item.id}}----{{item.name}}
+    </p>
+   
+
+
+
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        // 循环普通数组
+        // list:[1,2,3,4,5,6]
+        // 循环对象数组
+        id: '',
+        name: '',
+        list: [{
+            id: 1,
+            name: '林黛玉'
+          },
+          {
+            id: 2,
+            name: '王宝钏'
+          },
+          {
+            id: 3,
+            name: '贾宝玉'
+          },
+          {
+            id: 4,
+            name: '王熙凤'
+          }
+        ]
+
+        // 循环对象
+        // user:{
+        //   id:1,
+        //   name:'hhc',
+        //   age:22
+        // }
+      },
+      methods: {
+        add() {
+          this.list.push({
+            id: this.id,
+            name: this.name
+          })
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
