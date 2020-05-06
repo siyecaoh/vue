@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 可动态增加的导航栏 */
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* .wrapper{
+     position: absolute;
+     top: calc(50%-15px);
+     left: calc(50%-250px);
+     width: 500px;
+     height: 30px;
+     border: 1px solid gray;
+     box-sizing: border-box;
+     display: flex;
+   }
+   .content{
+     flex: auto;
+     text-align: center;
+     line-height: 30px;
+     font-style: 30px;
+   }
+   .content:hover{
+     background: red;
+     color: white;
+   } */
+
+    /* 等分布局-中间固定，两边自适应 */
+     /* 允许用户调整div的大小 */
+    /* .wrapper {
+     
+      resize: both;
+      overflow: hidden;
+      width: 600px;
+      height: 400px;
+      border: 1px solid red;
+      display: flex;
+    }
+
+    .content {
+      box-sizing: border-box;
+    }
+
+    .content:first-of-type {
+      flex: auto;
+    }
+
+    .content:nth-of-type(2) {
+      中间盒子定宽 
+      flex: 0 0 400px;
+      border-left: 1px solid red;
+      border-right: 1px solid red;
+    }
+
+    .content:last-of-type {
+      flex: auto;
+    } */
+
+
+    /* 圣杯布局：
+    全局纵向分三部分：头部、尾部高度固定：宽度都为100%
+    中间被拆分为三栏：左右定宽，中间自适应 */
+
+    .box{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .content:first-of-type{
+      flex: 0 0 70px;
+      background: pink;
+      
+    }
+    .content:nth-of-type(2){
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex: auto;   
+    }
+    .left,.right{
+      background: red;
+      flex: 0 0 150px;
+    }
+   
+    .center{
+      background: orange;
+      float: left;
+      flex: auto;
+    }
+    .content:last-of-type{
+      flex: 0 0 100px;
+      background: blue;
+    }
+    .clearbox{
+      background: green;
+    }
+    .color{
+      width: 30px;
+      height: 30px;
+      border: 1px solid pink;
+      float: left;
+    }
+    .a{
+      width: 30px;
+      height: 30px;
+      border: 1px solid red;
+    }
+    .clear::after{
+     content: "";
+     display: block;
+     clear: both;
+     height: 0;
+     overflow: hidden;
+     visibility: hidden;
+    }
+
+    /* 清除浮动，防止高度塌陷 */
+    .child{
+      float: left;
+    }
+    .parent{
+      overflow: hidden;
+    }
+    /* margin合并 */
+    .one{
+      width: 100px;
+      height: 100px;
+      background: #000;
+    }
+    .two{
+      width: 20px;
+      height: 20px;
+      background: red;
+    }
+    .parent{
+      overflow: hidden;
+    }
+    /* 单侧定宽，另一侧自适应 */
+    .parent{
+      height: 10vh;
+      width: 100vw;
+    }
+    .box-left{
+      float: left;
+      width: 100px;
+      height: 100%;
+    }
+    .box-right{
+      overflow: hidden;
+      height: 100%;
+    }
+
+  </style>
+
+
+</head>
+
+<body>
+  <!-- 导航栏 -->
+ <div class="box">
+  <div class="content">header</div>
+  <div class="content">
+    <div class="left">left</div>
+    <div class="center">center</div>
+    <div class="right">right</div>
+
+  </div>
+  <div class="content">footer</div>
+ </div>
+
+
+ <div class="clearbox clear">
+   <div class="color"></div>
+   <div class="color"></div>
+   <div class="color"></div>
+ </div> 
+ <div class="a"></div>
+</body>
+
+</html>
